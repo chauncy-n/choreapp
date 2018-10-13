@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Chore List</h1>
+{% for chore in chores %}
+    <div class="card">
+            <div class="card-content">
+                <p>Chore: {{ chore.task }}</p>
+                <p>Description: {{ chore.description }}</p>
+            </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
