@@ -13,7 +13,7 @@ def chores_index(request):
 
 def chores_detail(request, chore_id):
     chore = Chore.objects.get(id=chore_id)
-    return render(request, 'chore/detail.html', {'chore': chore})
+    return render(request, 'chores/detail.html', {'chore': chore})
 
 # class ChoreCreate(CreatView):
 #     model = Chore
