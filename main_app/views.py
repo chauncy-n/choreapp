@@ -11,12 +11,16 @@ def chores_index(request):
     chores = Chore.objects.all()
     return render(request, 'chores/index.html', {'chores': chores})
 
-class ChoreCreate(CreatView):
-    model = Chore
-    fields = [task, description, points]
+def chores_detail(request, chore_id):
+    chore = Chore.objects.get(id=chore_id)
+    return render(request, 'chore/detail.html', {'chore': chore})
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object = self.request.user
-        self.object.save()
-        return HttpResponseRedirect('/chores/')
+# class ChoreCreate(CreatView):
+#     model = Chore
+#     fields = [task, description, points]
+
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object = self.request.user
+#         self.object.save()
+#         return HttpResponseRedirect('/chores/')
