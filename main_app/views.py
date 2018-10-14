@@ -10,3 +10,13 @@ def index(request):
 def chores_index(request):
     chores = Chore.objects.all()
     return render(request, 'chores/index.html', {'chores': chores})
+
+class ChoreCreate(CreatView):
+    model = Chore
+    fields = [task, description, points]
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/chores/')
