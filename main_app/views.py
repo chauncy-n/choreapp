@@ -28,7 +28,6 @@ class ChoreUpdate(UpdateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object = self.request.user
         self.object.save()
         return HttpResponseRedirect('/chores/' + str(self.object.pk))
 
