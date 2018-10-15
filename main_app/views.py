@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Chore
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -32,7 +32,7 @@ class ChoreUpdate(UpdateView):
         self.object.save()
         return HttpResponseRedirect('/chores/' + str(self.object.pk))
 
-@method_decorator(login_required, name='dispatch')
+
 class ChoreDelete(DeleteView):
     model = Chore
     success_url = '/chores'
@@ -80,12 +80,12 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('index')
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
 
-@login_required
+
 def profile(request, username):
     if username == request.user.username:
         user = User.objects.get(username=username)
