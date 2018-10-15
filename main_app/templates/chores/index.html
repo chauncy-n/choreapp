@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>Chore List</h1>
+<a href="/chores/create">Add a New Chore</a>
 {% for chore in chores %}
     <div class="card">
         <a href='{% url "chores_detail" chore.id %}'>
@@ -10,6 +11,8 @@
                 <p>Description: {{ chore.description }}</p>
                 <p>Points: {{chore.points}} </p>
             </div>
+        </a>
+        <a href="/user/{{chore.user.username}}">
         </a>
     </div>
 {% endfor %}

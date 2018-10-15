@@ -17,9 +17,17 @@
               <a href="#" class="brand-logo">Chore App</a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/chores">Chore List</a> </li>
-                <li><a href="#">Sign up</a></li>
-                <li><a href="#">Log In</a></li>
-                <li><a href="#">Log out</a></li>
+                {% if user.is_authenticated %}
+                    <li> | </li>
+                    <li><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></li>
+                    <li> | </li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li> | </li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li> | </li>
+                    <li><a href="{% url 'signup' %}">SignUp</a></li>
+                {% endif %}
               </ul>
             </div>
           </nav>

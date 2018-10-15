@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ username }}'s chores:</h1>
+
+{% for chore in chores %}
+<a href="/chores/{{ chore.id }}">
+  <h3>{{ chore.task }}</h3>
+</a>
+
+{% endfor %}
+{% endblock %}

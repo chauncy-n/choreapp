@@ -9,6 +9,8 @@
         <p>Breed: {{ chore.task }}</p>
         <p>Description: {{ chore.description }}</p>
         <p>Points: {{chore.points}} </p>
+        <a href="{% url 'chores_update' chore.id %}">Update Chore</a> | 
+        <a href="{% url 'chores_delete' chore.id %}">DELETE This Chore</a>
     </div>
 </div>
 
