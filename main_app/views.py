@@ -16,7 +16,7 @@ class ChildCreate(CreateView):
     fields = ['name','points']
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.user = self.request.user
+        self.object.parent = self.request.user
         self.object.save()
         return HttpResponseRedirect('/children/')
 
@@ -68,7 +68,7 @@ def chores_detail(request, chore_id):
     chore = Chore.objects.get(id=chore_id)
     return render(request, 'chores/detail.html', {'chore': chore})
 
-def child_index(request):
+def children_index(request):
     children = Child.objects.all()
     return render(request, 'children/index.html', {'children': children})
 
