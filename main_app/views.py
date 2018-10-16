@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Chore
+from .models import Chore, Child
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from .forms import LoginForm
@@ -11,6 +11,27 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 # Create your views here.
+class ChildCreate(CreateView):
+    model = Child
+    fields = ['points']
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/children/')
+
+class ChildUpdate(UpdateView):
+    model = Child
+    fields = ['points']
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect('/children/' + str(self.object.pk))
+
+class ChildDelete(DeleteView):
+    model = Chore
+    success_url = '/children/'
 
 class ChoreCreate(CreateView):
     model = Chore
@@ -88,10 +109,9 @@ def signup(request):
 def profile(request, username):
     if username == request.user.username:
         user = User.objects.get(username=username)
-        chores = Chore.objects.filter(user=user)
-        return render(request, 'profile.html', {'username': username, 'chores': chores})
+        # children = Child.objects.filter(user=user)
+        children = user.child_set
+        return render(request, 'profile.html', {'username': username, 'children': children})
     else:
         return HttpResponseRedirect('/')
 
-
-    

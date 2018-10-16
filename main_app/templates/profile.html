@@ -6,8 +6,16 @@
 
 {% for chore in chores %}
 <a href="/chores/{{ chore.id }}">
-  <h3>{{ chore.task }}</h3>
+  <ul>
+    <li>{{child.points}} </li>
+    <li>{{ chore.task }}</li>
+    <li>Points:  </li>
+  </ul>
 </a>
 
 {% endfor %}
 {% endblock %}
+
+
+
+
