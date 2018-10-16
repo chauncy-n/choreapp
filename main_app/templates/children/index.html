@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Chore List</h1>
+<a href="/children/create">Add a Child</a>
+{% for child in childs %}
+    <div class="card">
+        <a href='{% url "children_detail" child.id %}'>
+            <div class="card-content">
+                <p>Name: {{ chid.name }}</p>
+                <p>Points: {{ child.points }}</p>
+            </div>
+        </a>
+        <a href="/user/{{child.user.username}}">
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock %}

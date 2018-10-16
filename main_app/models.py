@@ -19,6 +19,7 @@ class Chore(models.Model):
 
 class Child(models.Model):
     parent = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
     points = models.IntegerField(default=0)
     chores = models.ManyToManyField(Chore)
 

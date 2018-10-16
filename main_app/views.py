@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 # Create your views here.
 class ChildCreate(CreateView):
     model = Child
-    fields = ['points']
+    fields = ['name','points']
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
@@ -22,7 +22,7 @@ class ChildCreate(CreateView):
 
 class ChildUpdate(UpdateView):
     model = Child
-    fields = ['points']
+    fields = ['name','points']
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -67,6 +67,15 @@ def chores_index(request):
 def chores_detail(request, chore_id):
     chore = Chore.objects.get(id=chore_id)
     return render(request, 'chores/detail.html', {'chore': chore})
+
+def child_index(request):
+    children = Child.objects.all()
+    return render(request, 'children/index.html', {'children': children})
+
+def children_detail(request, child_id):
+    child = Child.objects.get(id=child_id)
+    return render(request, 'children/detail.html', {'child': child})
+
 
 def login_view(request):
     if request.method == 'POST':

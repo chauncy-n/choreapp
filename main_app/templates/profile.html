@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h1>{{ username }}'s chores:</h1>
+<h1>{{ username }}'s Kids:</h1>
 
-{% for chore in chores %}
+{% for child in childs %}
 <a href="/chores/{{ chore.id }}">
   <ul>
     <li>{{child.points}} </li>
-    <li>{{ chore.task }}</li>
+    <li>{{ child.name }}</li>
     <li>Points:  </li>
   </ul>
 </a>
