@@ -3,11 +3,11 @@
 
 <h1>Child List</h1>
 <a href="/children/create">Add a Child</a>
-{% for child in childs %}
+{% for child in children %}
     <div class="card">
-        <a href='{% url "children_detail" child.id %}'>
+        <a href='{% url "children_detail" child.id %}'></a>
             <div class="card-content">
-                <p>Name: {{ chid.name }}</p>
+                <p>Name: {{ child.name }}</p>
                 <p>Points: {{ child.points }}</p>
             </div>
         </a>
