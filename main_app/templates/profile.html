@@ -5,12 +5,12 @@
 <h1>{{ username }}'s Kids:</h1>
 
 {% for child in children %}
-  
+<a href="/children/{{ child.id }}">
   <ul>
     <li>Child:{{ child.name }}</li>
     <li>Points:{{child.points}} </li>
   </ul>
-
+</a>
 
 {% endfor %}
 {% endblock %}

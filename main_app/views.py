@@ -30,7 +30,7 @@ class ChildUpdate(UpdateView):
         return HttpResponseRedirect('/children/' + str(self.object.pk))
 
 class ChildDelete(DeleteView):
-    model = Chore
+    model = Child
     success_url = '/children/'
 
 class ChoreCreate(CreateView):
