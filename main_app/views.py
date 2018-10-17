@@ -13,16 +13,18 @@ from django.utils.decorators import method_decorator
 # Create your views here.
 class ChildCreate(CreateView):
     model = Child
-    fields = ['name','points']
+    fields = ['name','points','chores']
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.parent = self.request.user
         self.object.save()
-        return HttpResponseRedirect('/children/')
+        return HttpResponseRedirect('/user/' + str(self.object.parent))
+
 
 class ChildUpdate(UpdateView):
     model = Child
-    fields = ['name','points']
+    fields = ['name','points','chores']
+
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -31,31 +33,34 @@ class ChildUpdate(UpdateView):
 
 class ChildDelete(DeleteView):
     model = Child
-    success_url = '/children/'
-
+    success_url = '/'  
+    
 class ChoreCreate(CreateView):
     model = Chore
-    fields = ['task', 'description', 'points']
+    fields = '__all__'
+    # fields = ['task', 'description', 'points']
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return HttpResponseRedirect('/chores/')
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.user = self.request.user
+    #     self.object.save()
+    #     return HttpResponseRedirect('/chores/')
+
 
 class ChoreUpdate(UpdateView):
     model = Chore
     fields = ['task', 'description', 'points']
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.save()
-        return HttpResponseRedirect('/chores/' + str(self.object.pk))
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.save()
+    #     return HttpResponseRedirect('/chores/' + str(self.object.pk))
 
 
 class ChoreDelete(DeleteView):
     model = Chore
     success_url = '/chores'
+
 
 def index(request):
     return render(request,'base.html')

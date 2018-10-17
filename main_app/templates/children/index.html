@@ -5,9 +5,9 @@
 <a href="/children/create">Add a Child</a>
 {% for child in children %}
     <div class="card">
-        <a href='{% url "children_detail" child.id %}'></a>
+        <a href='{% url "children_detail" child.id %}'>
             <div class="card-content">
-                <p>Name: {{ child.name }}</p>
+                <p>Name: {{ chid.name }}</p>
                 <p>Points: {{ child.points }}</p>
             </div>
         </a>
@@ -17,6 +17,3 @@
 {% endfor %}
 
 {% endblock %}
-
-
-

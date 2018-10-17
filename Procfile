@@ -1,0 +1,1 @@
+web: gunicorn choreapp.wsgi --log-file -

@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chore app</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% block css %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    {% endblock css %}
+
 </head>
 <body>
     <header class="navbar fixed">
@@ -17,7 +21,7 @@
               <a href="#" class="brand-logo">Chore App</a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/chores">Chore List</a> </li>
-                <li><a href="/children">Child List</a> </li>
+                <li><a href="/children/create">Add child</a> </li>
                 {% if user.is_authenticated %}
                     <li> | </li>
                     <li><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></li>
@@ -38,7 +42,17 @@
         {% endblock %}
     </main>
     <footer>Copyright</footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
+    {% block javascript %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE="
+        crossorigin="anonymous"></script>
+    
+    <script>
+        var selectEl = document.querySelectorAll('id_chores');
+            M.FormSelect.init(selectEl);
+    </script>
+{% endblock javascript %}     
 </body>
 </html>
