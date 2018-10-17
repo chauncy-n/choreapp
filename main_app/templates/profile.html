@@ -4,14 +4,13 @@
 
 <h1>{{ username }}'s Kids:</h1>
 
-{% for child in childs %}
-<a href="/chores/{{ chore.id }}">
+{% for child in children %}
+  
   <ul>
-    <li>{{child.points}} </li>
-    <li>{{ child.name }}</li>
-    <li>Points:  </li>
+    <li>Child:{{ child.name }}</li>
+    <li>Points:{{child.points}} </li>
   </ul>
-</a>
+
 
 {% endfor %}
 {% endblock %}

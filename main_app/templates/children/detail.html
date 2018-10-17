@@ -8,9 +8,13 @@
         <span class="card-title">{{ child.name }}</span>
         <p>Name: {{ child.name }}</p>
         <p>Points: {{ child.points }}</p>
-        <a href="{% url 'children_update' child.id %}">Update Chore</a> | 
-        <a href="{% url 'children_delete' child.id %}">DELETE This Chore</a>
+        <a href="{% url 'children_update' child.id %}">Update Child</a> | 
+        <a href="{% url 'children_delete' child.id %}">DELETE This Child</a>
     </div>
 </div>
 
 {% endblock %}
+
+
+
+

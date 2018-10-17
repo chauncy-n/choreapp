@@ -118,8 +118,7 @@ def signup(request):
 def profile(request, username):
     if username == request.user.username:
         user = User.objects.get(username=username)
-        # children = Child.objects.filter(user=user)
-        children = user.child_set
+        children = Child.objects.filter(parent=user)
         return render(request, 'profile.html', {'username': username, 'children': children})
     else:
         return HttpResponseRedirect('/')
