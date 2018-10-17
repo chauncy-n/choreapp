@@ -10,6 +10,7 @@ django = "*"
 gunicorn = "*"
 django-heroku = "*"
 materializecss-form = "*"
+boto3 = "*"
 
 [requires]
 
