@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'materializecssform', 
-]
+]   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

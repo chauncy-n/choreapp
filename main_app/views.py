@@ -11,52 +11,41 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class ChildCreate(CreateView):
     model = Child
-    fields = ['name','points','chores']
+    fields = ['name','points']
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.parent = self.request.user
         self.object.save()
         return HttpResponseRedirect('/user/' + str(self.object.parent))
 
-
+@method_decorator(login_required, name='dispatch')
 class ChildUpdate(UpdateView):
     model = Child
     fields = ['name','points','chores']
 
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.save()
+        form.save()
         return HttpResponseRedirect('/children/' + str(self.object.pk))
 
+@method_decorator(login_required, name='dispatch')   
 class ChildDelete(DeleteView):
     model = Child
     success_url = '/'  
-    
+@method_decorator(login_required, name='dispatch')   
 class ChoreCreate(CreateView):
     model = Chore
     fields = '__all__'
-    # fields = ['task', 'description', 'points']
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.user = self.request.user
-    #     self.object.save()
-    #     return HttpResponseRedirect('/chores/')
-
-
+@method_decorator(login_required, name='dispatch')
 class ChoreUpdate(UpdateView):
     model = Chore
     fields = ['task', 'description', 'points']
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.save()
-    #     return HttpResponseRedirect('/chores/' + str(self.object.pk))
-
-
+@method_decorator(login_required, name='dispatch')
 class ChoreDelete(DeleteView):
     model = Chore
     success_url = '/chores'
@@ -64,22 +53,23 @@ class ChoreDelete(DeleteView):
 
 def index(request):
     return render(request,'base.html')
-
+@login_required(login_url='/login/')
 def chores_index(request):
     chores = Chore.objects.all()
     return render(request, 'chores/index.html', {'chores': chores})
-
+@login_required(login_url='/login/')
 def chores_detail(request, chore_id):
     chore = Chore.objects.get(id=chore_id)
     return render(request, 'chores/detail.html', {'chore': chore})
-
+@login_required(login_url='/login/')
 def children_index(request):
     children = Child.objects.all()
     return render(request, 'children/index.html', {'children': children})
-
+@login_required(login_url='/login/')
 def children_detail(request, child_id):
     child = Child.objects.get(id=child_id)
-    return render(request, 'children/detail.html', {'child': child})
+    chores = child.chores.all()
+    return render(request, 'children/detail.html', {'child': child, 'chores':chores})
 
 
 def login_view(request):
@@ -119,7 +109,7 @@ def signup(request):
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
 
-
+@login_required(login_url='/login/')
 def profile(request, username):
     if username == request.user.username:
         user = User.objects.get(username=username)
