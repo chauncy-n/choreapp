@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Chore, Child
+from .models import Chore, Child, Reward
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from .forms import LoginForm
@@ -50,27 +50,54 @@ class ChoreDelete(DeleteView):
     model = Chore
     success_url = '/chores'
 
+@method_decorator(login_required, name='dispatch')   
+class RewardCreate(CreateView):
+    model = Reward
+    fields = '__all__'
+
+@method_decorator(login_required, name='dispatch')
+class RewardUpdate(UpdateView):
+    model = Reward
+    fields = ['description', 'points']
+
+@method_decorator(login_required, name='dispatch')
+class RewardDelete(DeleteView):
+    model = Reward
+    success_url = '/rewards'
 
 def index(request):
     return render(request,'base.html')
+
 @login_required(login_url='/login/')
 def chores_index(request):
     chores = Chore.objects.all()
     return render(request, 'chores/index.html', {'chores': chores})
+
 @login_required(login_url='/login/')
 def chores_detail(request, chore_id):
     chore = Chore.objects.get(id=chore_id)
     return render(request, 'chores/detail.html', {'chore': chore})
+
 @login_required(login_url='/login/')
 def children_index(request):
     children = Child.objects.all()
     return render(request, 'children/index.html', {'children': children})
+
 @login_required(login_url='/login/')
 def children_detail(request, child_id):
     child = Child.objects.get(id=child_id)
     chores = child.chores.all()
     return render(request, 'children/detail.html', {'child': child, 'chores':chores})
 
+@login_required(login_url='/login/')
+def rewards_index(request):
+    rewards = Reward.objects.all()
+    return render(request, 'rewards/index.html', {'rewards': rewards})
+
+@login_required(login_url='/login/')
+def rewards_detail(request, reward_id):
+    reward = Reward.objects.get(id=reward_id)
+    return render(request, 'reward/detail.html', {'reward': reward})
 
 def login_view(request):
     if request.method == 'POST':

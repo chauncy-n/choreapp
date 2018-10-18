@@ -25,4 +25,14 @@ class Child(models.Model):
     chores = models.ManyToManyField(Chore, verbose_name='Add a chore')
 
 
+class Reward(models.Model):
+    description = models.CharField(max_length=1000)
+    points = models.IntegerField()
+    def __str__(self):
+        return self.description
+    
+    def get_absolute_url(self):
+        return reverse('rewards_detail', kwargs={'reward_id': self.id})
+
+
 

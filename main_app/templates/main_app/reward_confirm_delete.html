@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Delete Reward</h1>
+
+  <p>Are you sure you want to delete this reward: {{ reward }}?</p>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete.">
+    <a href="/rewards">CANCEL</a>
+  </form>
+{% endblock %}
+
+
+

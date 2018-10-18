@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Reward List</h1>
+<a href="/rewards/create">Add a New Reward</a>
+{% for reward in rewards %}
+    <div class="card">
+        <a href='{% url "rewards_detail" reward.id %}'>
+            <div class="card-content">
+                <p>Description: {{ reward.description }}</p>
+                <p>Cost: {{reward.points}} points </p>
+            </div>
+        </a>
+        <a href="/user/{{reward.user.username}}">
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock %}

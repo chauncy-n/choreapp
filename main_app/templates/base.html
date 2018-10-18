@@ -21,6 +21,7 @@
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/chores">Chore List</a> </li>
                 <li><a href="/children/create">Add child</a> </li>
+                <li> <a href="{/rewards">Rewards list</a> </li>
                 {% if user.is_authenticated %}
                     <li> | </li>
                     <li><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></li>

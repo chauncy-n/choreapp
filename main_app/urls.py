@@ -17,4 +17,9 @@ urlpatterns = [
     path('children/create/', views.ChildCreate.as_view(), name='children_create'),
     path('children/<int:pk>/update/', views.ChildUpdate.as_view(), name='children_update'),
     path('children/<int:pk>/delete/', views.ChildDelete.as_view(), name='children_delete'),
+    path('rewards/', views.rewards_index, name='rewards_index'),
+    path('rewards/<int:reward_id>', views.rewards_detail, name='rewards_detail'),  
+    path('rewards/create/', views.RewardCreate.as_view(), name='rewards_create'),
+    path('rewards/<int:pk>/update/', views.RewardUpdate.as_view(), name='rewards_update'),
+    path('rewards/<int:pk>/delete/', views.RewardDelete.as_view(), name='rewards_delete'),
 ]
