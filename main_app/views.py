@@ -66,7 +66,7 @@ class RewardDelete(DeleteView):
     success_url = '/rewards'
 
 def index(request):
-    return render(request,'base.html')
+    return render(request,'index.html')
 
 @login_required(login_url='/login/')
 def chores_index(request):

@@ -6,4 +6,6 @@ body {
 main {
     flex: 1 0 auto;
 }
-
+img{
+    height: 2fr;
+}

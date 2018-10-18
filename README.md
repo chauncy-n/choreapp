@@ -8,22 +8,9 @@ Link to your deployed app
 
 Unsolved problems (if any)
 Future (Ice Box) Features
-
-
-
-
-
 # Chore App
-
-## User Stories
-* User
-    * I want to be able to make a chores list for my kids.
-    * I want to be able to set a point value of the chores so I can have my child can earn points with each chore.
-    * I want to have rewards with point values that can be bought with the points earned from doing chores.
-    * I want to be able to approve chore completion then give points to child so that
-    I know the chore was completed. 
-    * I want to see rewards and their cost so that a child  knows what rewards they can earn and how much they cost.
-    * I want to see points added up so that a child knows which rewards they can get.
+* This app is for parents that want to have a reward system for their kids completing chores. It
+## link to app on Heroku
 
 ## Entity Relationship Diagram
 
