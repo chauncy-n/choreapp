@@ -97,7 +97,7 @@ def rewards_index(request):
 @login_required(login_url='/login/')
 def rewards_detail(request, reward_id):
     reward = Reward.objects.get(id=reward_id)
-    return render(request, 'reward/detail.html', {'reward': reward})
+    return render(request, 'rewards/detail.html', {'reward': reward})
 
 def login_view(request):
     if request.method == 'POST':
