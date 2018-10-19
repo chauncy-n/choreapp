@@ -26,7 +26,6 @@ class ChildUpdate(UpdateView):
     model = Child
     fields = ['name','points','chores']
 
-
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect('/children/' + str(self.object.pk))
@@ -39,6 +38,11 @@ class ChildDelete(DeleteView):
 class ChoreCreate(CreateView):
     model = Chore
     fields = '__all__'
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/user/' + str(self.object.user))
 
 @method_decorator(login_required, name='dispatch')
 class ChoreUpdate(UpdateView):
@@ -141,7 +145,8 @@ def profile(request, username):
     if username == request.user.username:
         user = User.objects.get(username=username)
         children = Child.objects.filter(parent=user)
-        return render(request, 'profile.html', {'username': username, 'children': children})
+        chores = Chore.objects.filter(user=user)
+        return render(request, 'profile.html', {'username': username, 'children': children, 'chores': chores})
     else:
         return HttpResponseRedirect('/')
 
