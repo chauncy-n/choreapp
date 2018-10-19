@@ -9,7 +9,7 @@
                 <span class="card-title">{{ child.name }}</span>
                 <p>Name: {{ child.name }}</p>
                 <p>Points: {{ child.points }}</p>
-                <a href="{% url 'children_update' child.id %}">Update Points</a> | 
+                <a href="{% url 'children_update' child.id %}">Update Points or Add a Chore</a> | 
                 <a href="{% url 'children_delete' child.id %}">DELETE This Child</a>
                 {% for chore in chores %}
                 <div class="card-panel teal-text center-align">{{chore.task}}, Description: {{chore.description}}, Points:{{chore.points}} </div>

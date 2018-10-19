@@ -1,19 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Child List</h1>
-<a href="/children/create">Add a Child</a>
-{% for child in children %}
-    <div class="card">
-        <a href='{% url "children_detail" child.id %}'>
-            <div class="card-content">
-                <p>Name: {{ child.name }}</p>
-                <p>Points: {{ child.points }}</p>
-            </div>
-        </a>
-        <a href="/user/{{child.user.username}}">
-        </a>
-    </div>
-{% endfor %}
-
+<h1>Good job you found the easter egg.</h1>
+<h3>Now you should ask yourself why you were looking for it on this page</h3>
+<p>Created by Chauncy Nowak</p>
 {% endblock %}
